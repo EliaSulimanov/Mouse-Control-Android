@@ -29,5 +29,12 @@
                 android:text="@string/connect"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/connectButton"/>
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/poweredeliasulimanov"
+                android:id="@+id/poweredByEliaSulimanovLogo"
+                android:contentDescription="@string/poweredbyeliasulimanovlogo"
+        />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
