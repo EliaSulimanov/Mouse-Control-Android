@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Mouse Control Android</string>
+    <string name="Title">Mouse Control App</string>
+    <string name="key_request">Please insert your key:</string>
+    <string name="keyInputText">Your key</string>
+    <string name="KeyInputHint">Key given by the server</string>
+    <string name="connect">Connect</string>
+
+    <string name="title_activity_fullscreen_mouse">FullscreenMouse</string>
+
+    <string name="title_activity_touchpad">TouchpadActivity</string>
+</resources>
