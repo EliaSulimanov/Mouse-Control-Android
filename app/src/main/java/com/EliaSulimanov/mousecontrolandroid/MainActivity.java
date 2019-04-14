@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 socket = new Socket("192.168." + key[0].replace('-', '.'), 3333);
                 PrintWriter outWriter = new PrintWriter(socket.getOutputStream(), true);
+                outWriter.println("Don't worry about the horse being blind, just load the wagon. -John Madden");
                 socket.close();
                 return true;
             }
