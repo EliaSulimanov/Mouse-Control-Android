@@ -14,6 +14,7 @@
             android:theme="@style/AppTheme" tools:ignore="GoogleAppIndexingWarning">
         <activity
                 android:name=".TouchpadActivity"
+                android:screenOrientation="landscape"
                 android:configChanges="orientation|keyboardHidden|screenSize"
                 android:label="@string/title_activity_touchpad"
                 android:parentActivityName=".MainActivity"

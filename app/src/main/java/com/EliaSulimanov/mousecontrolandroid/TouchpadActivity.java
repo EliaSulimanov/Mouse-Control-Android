@@ -125,18 +125,46 @@ public class TouchpadActivity extends AppCompatActivity {
         touchView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()){
-                    case MotionEvent.ACTION_DOWN:
-                    case  MotionEvent.ACTION_MOVE:
-                        new SendMessageTask().execute("m," + event.getY() + "," + event.getX());
-                        break;
-                    default:
-                        break;
+                if (event.getAction() == MotionEvent.ACTION_MOVE) {
+                    new SendMessageTask().execute("m," + event.getRawX() + "," + event.getRawY()); //TODO check orientation
                 }
                  return true;
             }
         });
+
+        final View leftButtonView = findViewById(R.id.leftButtonView);
+        leftButtonView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_MOVE:
+                        new SendMessageTask().execute("m," + event.getRawX() + "," + event.getRawY()); //TODO check orientation
+                        break;
+                    case MotionEvent.ACTION_DOWN:
+                        new SendMessageTask().execute("l"); //TODO test double click
+                        break;
+                }
+                return true;
+            }
+        });
+
+        final View rightButtonView = findViewById(R.id.rightButtonView);
+        rightButtonView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_MOVE:
+                        new SendMessageTask().execute("m," + event.getRawX() + "," + event.getRawY()); //TODO check orientation
+                        break;
+                    case MotionEvent.ACTION_DOWN:
+                        new SendMessageTask().execute("r");
+                        break;
+                }
+                return true;
+            }
+        });
     }
+    @SuppressLint("StaticFieldLeak")
     class SendMessageTask extends AsyncTask<String, Void, Boolean>
     {
         protected Boolean doInBackground(String... message)
@@ -154,16 +182,22 @@ public class TouchpadActivity extends AppCompatActivity {
 
                 switch (message[0].charAt(0)) {
                     case 'r':
+                        outWriter.println("r");
+                        break;
+                    case 'l':
                         outWriter.println("l");
                         break;
                     case 'm':
-                        Log.i("Move", "Moved");
-                        String coordinates[] = message[0].split(",");
+                        String[] coordinates = message[0].split(",");
+                        /*
+                         * I'm sending integers as awt robot can only handle ints
+                         * TODO check if all the screen is reachable
+                         */
                         String x = String.valueOf((Integer.parseInt(coordinates[1].substring(0, coordinates[1].indexOf("."))) * 100) / width);
                         String y = String.valueOf((Integer.parseInt(coordinates[2].substring(0, coordinates[2].indexOf("."))) * 100) / height);
                         outWriter.println("m," + x + "," + y);
                         break;
-                    case 'i':
+                    default:
                         outWriter.println("i");
                         break;
                 }
@@ -171,7 +205,7 @@ public class TouchpadActivity extends AppCompatActivity {
             }
             catch (Exception e)
             {
-                Log.i("Move", e.toString());
+                Log.i("ES", e.toString());
             }
 
             return null;

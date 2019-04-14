@@ -12,9 +12,25 @@
 
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
-    <View
+    <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" android:id="@+id/touchView"/>
+            android:layout_height="match_parent" android:weightSum="4">
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/touchView" android:layout_weight="1"/>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:layout_weight="1">
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/leftButtonView" android:layout_weight="1"/>
+            <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/rightButtonView" android:layout_weight="1"/>
+        </LinearLayout>
+    </LinearLayout>
     <FrameLayout android:layout_width="match_parent"
                  android:layout_height="match_parent"
                  android:fitsSystemWindows="true">
