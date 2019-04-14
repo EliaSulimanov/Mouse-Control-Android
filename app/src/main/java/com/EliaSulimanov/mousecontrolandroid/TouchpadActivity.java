@@ -126,7 +126,7 @@ public class TouchpadActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_MOVE) {
-                    new SendMessageTask().execute("m," + event.getRawX() + "," + event.getRawY()); //TODO check orientation
+                    new SendMessageTask().execute("m," + event.getRawX() + "," + event.getRawY());
                 }
                  return true;
             }
@@ -138,10 +138,10 @@ public class TouchpadActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_MOVE:
-                        new SendMessageTask().execute("m," + event.getRawX() + "," + event.getRawY()); //TODO check orientation
+                        new SendMessageTask().execute("m," + event.getRawX() + "," + event.getRawY());
                         break;
                     case MotionEvent.ACTION_DOWN:
-                        new SendMessageTask().execute("l"); //TODO test double click
+                        new SendMessageTask().execute("l");
                         break;
                 }
                 return true;
@@ -154,7 +154,7 @@ public class TouchpadActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_MOVE:
-                        new SendMessageTask().execute("m," + event.getRawX() + "," + event.getRawY()); //TODO check orientation
+                        new SendMessageTask().execute("m," + event.getRawX() + "," + event.getRawY());
                         break;
                     case MotionEvent.ACTION_DOWN:
                         new SendMessageTask().execute("r");
